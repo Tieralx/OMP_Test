@@ -17,13 +17,14 @@
 
 void printarray(float* d);
 
-int main()
+void main()
 {
 	srand(time(0));
 	float random = rand() % rndsz; //inicializacion de variable random, se usara para popular los arreglos
 
 	std::cout << "Suma de arreglos en paralelo, con numeros aleatorios entre 0 y " << rndsz << ", mostrando " << shw << " registros de " << sz << "\n";
-	float arr1[sz], arr2[sz], res[sz], threads[sz]; // inicializacion de arreglos arr1 y arr2 contendran los datos a sumar, res contendra los resultados de la sumatoria, threads sera usada para mostrar la cantidad de hilos usados en el proceso
+	float arr1[sz], arr2[sz], res[sz], threads[sz]; // inicializacion de arreglos arr1 y arr2 contendran los datos a sumar, res contendra los 
+													//resultados de la sumatoria, threads sera usada para mostrar la cantidad de hilos usados en el proceso
 	int i; 
 
 
@@ -39,7 +40,7 @@ int main()
 
 	//creacion de for para uso en paralelo y configuracion de espacios privados y compartidos
 	#pragma omp parallel for \
-	shared(arr1,arr2,res,piece) private (i) \
+	shared(arr1,arr2,res,piece,threads) private (i) \
 	schedule(static, piece)
 
 	
